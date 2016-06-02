@@ -19,5 +19,9 @@
         <br/>
         <input type="submit" value="Upload File"/>
     </form>
+    <video width="800" height="600" controls>
+        <source src="http://localhost:8080/video" type="video/ogg">
+        Your browser does not support the video tag.
+    </video>
 </body>
 </html>
