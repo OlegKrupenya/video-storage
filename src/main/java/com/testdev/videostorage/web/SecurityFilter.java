@@ -17,6 +17,7 @@ public class SecurityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("Inside filter.");
+        // TODO: if there is no user in the session, redirect to the login page
         chain.doFilter(request, response);
     }
 

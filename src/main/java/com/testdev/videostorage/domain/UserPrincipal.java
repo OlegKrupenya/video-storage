@@ -5,13 +5,12 @@ import java.time.LocalDate;
 /**
  * @author oleh.krupenia.
  */
-public class User {
+public class UserPrincipal {
     private Long userId;
     private String firstName;
     private String lastName;
     private String email;
-    private LocalDate birthday;
-    private Gender gender;
+    private String password;
 
     public Long getUserId() {
         return userId;
@@ -45,19 +44,11 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public String getPassword() {
+        return password;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
