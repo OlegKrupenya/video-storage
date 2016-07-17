@@ -12,6 +12,7 @@ public class User {
     private String email;
     private LocalDate birthday;
     private Gender gender;
+    private String oAuth;
 
     public Long getUserId() {
         return userId;
@@ -59,5 +60,13 @@ public class User {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getoAuth() {
+        return oAuth;
+    }
+
+    public void setoAuth(String oAuth) {
+        this.oAuth = oAuth;
     }
 }

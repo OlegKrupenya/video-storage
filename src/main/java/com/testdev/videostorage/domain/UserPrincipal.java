@@ -11,6 +11,7 @@ public class UserPrincipal {
     private String lastName;
     private String email;
     private String password;
+    private String oAuth;
 
     public Long getUserId() {
         return userId;
@@ -50,5 +51,13 @@ public class UserPrincipal {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getoAuth() {
+        return oAuth;
+    }
+
+    public void setoAuth(String oAuth) {
+        this.oAuth = oAuth;
     }
 }
