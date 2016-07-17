@@ -11,6 +11,9 @@
     <title>File Uploading Form</title>
 </head>
 <body>
+    <span>Welcome,
+        <span id="username"></span>
+    </span>
     <h3>File Upload:</h3>
     Select a file to upload: <br/>
     <form action="upload" method="post"

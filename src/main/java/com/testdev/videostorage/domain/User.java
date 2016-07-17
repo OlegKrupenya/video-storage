@@ -13,6 +13,7 @@ public class User {
     private LocalDate birthday;
     private Gender gender;
     private String oAuth;
+    private String password;
 
     public Long getUserId() {
         return userId;
@@ -68,5 +69,13 @@ public class User {
 
     public void setoAuth(String oAuth) {
         this.oAuth = oAuth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
