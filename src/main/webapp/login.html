@@ -5,7 +5,20 @@
     <title>Video Storage</title>
     <script type="application/javascript">
         function signUp() {
-            alert('ok');
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+//                    document.getElementById("demo").innerHTML = xhttp.responseText;
+                    alert(xhttp.responseText);
+                }
+            };
+            xhttp.open("POST", "/signup", true);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify({firstName: document.getElementById('firstNameSignUp').value,
+                lastName: document.getElementById('lastNameSignUp').value,
+                email: document.getElementById('emailSignUp').value,
+                password: document.getElementById('passwordSignUp').value
+            }));
         }
     </script>
 </head>
@@ -14,11 +27,11 @@
     <div class="login">
         <div class="row">
             <span>Username or email</span>
-            <input type="text" placeholder="Username or email"/>
+            <input id="firstNameSignIp" type="text" placeholder="Username or email"/>
         </div>
         <div class="row">
             <span>Password</span>
-            <input type="text" placeholder="Password"/>
+            <input id="lastNameSignIp" type="text" placeholder="Password"/>
         </div>
         <div class="row">
             <button>Log In</button>
@@ -32,17 +45,17 @@
             <span>Sign up</span>
         </div>
         <div class="row">
-            <input type="text" placeholder="First Name"/>
-            <input type="text" placeholder="Last Name"/>
+            <input id="firstNameSignUp" type="text" placeholder="First Name"/>
+            <input id="lastNameSignUp" type="text" placeholder="Last Name"/>
         </div>
         <div class="row">
-            <input type="text" placeholder="Username or email"/>
+            <input id="emailSignUp" type="text" placeholder="Username or email"/>
         </div>
         <div class="row">
-            <input type="text" placeholder="Password"/>
+            <input id="passwordSignUp" type="text" placeholder="Password"/>
         </div>
         <div class="row">
-            <input type="text" placeholder="Retype Password"/>
+            <input id="retypePasswordSignUp" type="text" placeholder="Retype Password"/>
         </div>
         <div class="row">
             <span>Select you birthday</span>
