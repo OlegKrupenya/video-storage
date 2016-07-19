@@ -50,10 +50,10 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setDate(4, Date.valueOf(user.getBirthday()));
-            preparedStatement.setString(5, user.getEmail());
-            preparedStatement.setString(6, user.getEmail());
-            preparedStatement.setString(7, user.getEmail());
+            preparedStatement.setDate(4, user.getBirthday() != null ? Date.valueOf(user.getBirthday()) : null);
+            preparedStatement.setString(5, Gender.UNKNOWN.name());
+            preparedStatement.setString(6, user.getoAuth());
+            preparedStatement.setString(7, user.getPassword());
             preparedStatement.executeUpdate();
             ResultSet tableKeys = preparedStatement.getGeneratedKeys();
             tableKeys.next();
