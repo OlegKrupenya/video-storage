@@ -12,8 +12,8 @@
                     alert(xhttp.responseText);
                 }
             };
-            xhttp.open("POST", "/signup", true);
-            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.open("POST", "/resources/hello/signup", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
             xhttp.send(JSON.stringify({firstName: document.getElementById('firstNameSignUp').value,
                 lastName: document.getElementById('lastNameSignUp').value,
                 email: document.getElementById('emailSignUp').value,

@@ -1,8 +1,8 @@
 package com.testdev.videostorage.web;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import com.testdev.videostorage.domain.User;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -16,5 +16,13 @@ public class UserController {
     @Path("/plain")
     public String getPlain() {
         return "Hello World!!!";
+    }
+
+    @POST
+    @Path("/signup")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response consumeJSON(User user) {
+        return Response.status(200).entity("done").build();
     }
 }
