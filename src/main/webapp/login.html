@@ -8,7 +8,9 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    window.location.href = "http://localhost:8080/";
+                    var posLogin = window.location.href.indexOf('login');
+                    var url = window.location.href.substring(0, posLogin);
+                    window.location.href = url;
                 }
             };
             xhttp.open("POST", "/resources/hello/signup", true);
