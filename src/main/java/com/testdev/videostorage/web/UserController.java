@@ -19,10 +19,11 @@ public class UserController {
     private UserDao userDao = new UserDaoImpl();
 
     @GET
-    @Produces({ MediaType.TEXT_PLAIN })
-    @Path("/plain")
-    public String getPlain() {
-        return "Hello World!!!";
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getUser")
+    public User getAuthorizedUser(@Context HttpServletRequest request) {
+        return (User) request.getSession().getAttribute("user");
     }
 
     @POST

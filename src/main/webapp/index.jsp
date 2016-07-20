@@ -9,8 +9,22 @@
 <html>
 <head>
     <title>File Uploading Form</title>
+    <script type="application/javascript">
+        function loadUser() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var user = JSON.parse(xhttp.responseText);
+                    document.getElementById('username').innerHTML = user.firstName + ' ' + user.lastName;
+                }
+            };
+            xhttp.open("GET", "/resources/hello/getUser", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
+        }
+    </script>
 </head>
-<body>
+<body onload="loadUser()">
     <span>Welcome,
         <span id="username"></span>
     </span>
