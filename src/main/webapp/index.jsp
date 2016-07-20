@@ -22,6 +22,17 @@
             xhttp.setRequestHeader("Content-Type", "application/json");
             xhttp.send();
         }
+        function logout() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    redirectToMainPage();
+                }
+            };
+            xhttp.open("POST", "/resources/hello/logout", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
+        }
     </script>
 </head>
 <body onload="loadUser()">
@@ -40,5 +51,8 @@
         <source src="http://localhost:8080/video" type="video/ogg">
         Your browser does not support the video tag.
     </video>
+    <div style="position: absolute; right: 30px; top: 30px;">
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
 </body>
 </html>

@@ -4,18 +4,36 @@
     <meta charset="UTF-8">
     <title>Video Storage</title>
     <script type="application/javascript">
+        function redirectToMainPage() {
+            var posLogin = window.location.href.indexOf('login');
+            var url = window.location.href.substring(0, posLogin);
+            window.location.href = url;
+        }
+        function signIn() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    redirectToMainPage();
+                }
+            };
+            xhttp.open("POST", "/resources/hello/signin", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send(JSON.stringify({
+                email: document.getElementById('emailSignIn').value,
+                password: document.getElementById('passwordSignIn').value
+            }));
+        }
         function signUp() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    var posLogin = window.location.href.indexOf('login');
-                    var url = window.location.href.substring(0, posLogin);
-                    window.location.href = url;
+                    redirectToMainPage();
                 }
             };
             xhttp.open("POST", "/resources/hello/signup", true);
             xhttp.setRequestHeader("Content-Type", "application/json");
-            xhttp.send(JSON.stringify({firstName: document.getElementById('firstNameSignUp').value,
+            xhttp.send(JSON.stringify({
+                firstName: document.getElementById('firstNameSignUp').value,
                 lastName: document.getElementById('lastNameSignUp').value,
                 email: document.getElementById('emailSignUp').value,
                 password: document.getElementById('passwordSignUp').value
@@ -28,14 +46,14 @@
     <div class="login">
         <div class="row">
             <span>Username or email</span>
-            <input id="firstNameSignIp" type="text" placeholder="Username or email"/>
+            <input id="emailSignIn" type="text" placeholder="Username or email"/>
         </div>
         <div class="row">
             <span>Password</span>
-            <input id="lastNameSignIp" type="text" placeholder="Password"/>
+            <input id="passwordSignIn" type="text" placeholder="Password"/>
         </div>
         <div class="row">
-            <button>Log In</button>
+            <button onclick="signIn()">Log In</button>
         </div>
     </div>
     <div class="register">

@@ -16,22 +16,44 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserById(Long id) {
         User user = null;
-        String sql = "SELECT user_id, first_name, last_name, email, birthday, gender, oauth, password FROM Employees where user_id = ?";
+        String sql = "SELECT user_id, first_name, last_name, email, birthday, gender, oauth, password FROM users where user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setLong(1, user.getUserId());
-            ResultSet rs = preparedStatement.executeQuery(sql);
-            while (rs.next()) {
-                user.setUserId(rs.getLong("user_id"));
-                user.setFirstName(rs.getString("first_name"));
-                user.setLastName(rs.getString("last_name"));
-                user.setEmail(rs.getString("email"));
-                user.setGender(Gender.valueOf(rs.getString("gender")));
-                user.setBirthday(rs.getDate("birthday").toLocalDate());
-                user.setPassword(rs.getString("password"));
-            }
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            user = populateUserFromResultSet(rs);
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public User getUserByEmailAndPassword(String email, String password) {
+        User user = null;
+        String sql = "SELECT user_id, first_name, last_name, email, birthday, gender, oauth, password FROM users where email = ? and password = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
+            user = populateUserFromResultSet(rs);
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    private User populateUserFromResultSet(ResultSet rs) throws SQLException {
+        User user = new User();
+        while (rs.next()) {
+            user.setUserId(rs.getLong("user_id"));
+            user.setFirstName(rs.getString("first_name"));
+            user.setLastName(rs.getString("last_name"));
+            user.setEmail(rs.getString("email"));
+            user.setGender(Gender.valueOf(rs.getString("gender")));
+//            user.setBirthday(rs.getDate("birthday").toLocalDate());
+            user.setPassword(rs.getString("password"));
         }
         return user;
     }

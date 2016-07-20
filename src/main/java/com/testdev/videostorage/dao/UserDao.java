@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface UserDao {
     User getUserById(Long id);
+    User getUserByEmailAndPassword(String email, String password);
     List getUsers();
     boolean insertUser(User user);
     boolean updateUser(User user);
