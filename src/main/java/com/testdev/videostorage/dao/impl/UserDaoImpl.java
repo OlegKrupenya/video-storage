@@ -1,5 +1,6 @@
-package com.testdev.videostorage.dao;
+package com.testdev.videostorage.dao.impl;
 
+import com.testdev.videostorage.dao.UserDao;
 import com.testdev.videostorage.domain.Gender;
 import com.testdev.videostorage.domain.User;
 import com.testdev.videostorage.utils.ConnectionManager;

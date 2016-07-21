@@ -1,7 +1,7 @@
 package com.testdev.videostorage.web;
 
 import com.testdev.videostorage.dao.UserDao;
-import com.testdev.videostorage.dao.UserDaoImpl;
+import com.testdev.videostorage.dao.impl.UserDaoImpl;
 import com.testdev.videostorage.domain.User;
 
 import javax.servlet.http.HttpServletRequest;
