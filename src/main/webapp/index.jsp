@@ -26,7 +26,7 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    redirectToMainPage();
+                    window.location.href = window.location.href + '/login.html';
                 }
             };
             xhttp.open("POST", "/resources/hello/logout", true);
@@ -52,7 +52,7 @@
         Your browser does not support the video tag.
     </video>
     <div style="position: absolute; right: 30px; top: 5px;">
-        <a href="/logout" onclick="logout()">Logout</a>
+        <a href="javascript:void(0)" onclick="logout()">Logout</a>
     </div>
 </body>
 </html>
