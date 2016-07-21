@@ -11,5 +11,9 @@ CREATE TABLE users (
 );
 
 CREATE TABLE videos (
-
+  video_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(150),
+  content LONGBLOB,
+  user_id BIGINT NOT NULL,
+  CONSTRAINT FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
