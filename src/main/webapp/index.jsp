@@ -51,8 +51,8 @@
         <source src="http://localhost:8080/video" type="video/ogg">
         Your browser does not support the video tag.
     </video>
-    <div style="position: absolute; right: 30px; top: 30px;">
-        <a href="#" onclick="logout()">Logout</a>
+    <div style="position: absolute; right: 30px; top: 5px;">
+        <a href="/logout" onclick="logout()">Logout</a>
     </div>
 </body>
 </html>
