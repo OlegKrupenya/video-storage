@@ -38,7 +38,7 @@ public class VideoDaoImpl implements VideoDao {
             video = new Video();
             video.setVideoId(rs.getLong("video_id"));
             video.setUserId(rs.getLong("user_id"));
-            video.setContent(rs.getBytes("content"));
+//            video.setContent(rs.getBytes("content"));
             video.setTitle(rs.getString("title"));
         }
         return video;

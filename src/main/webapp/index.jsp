@@ -16,9 +16,22 @@
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                     var user = JSON.parse(xhttp.responseText);
                     document.getElementById('username').innerHTML = user.firstName + ' ' + user.lastName;
+                    loadVideoForUser();
                 }
             };
             xhttp.open("GET", "/resources/hello/getUser", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
+        }
+        function loadVideoForUser() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var user = JSON.parse(xhttp.responseText);
+                    document.getElementById('videoContainer').innerHTML = 'Video will be here...';
+                }
+            };
+            xhttp.open("GET", "/resources/video/getVideosForUser", true);
             xhttp.setRequestHeader("Content-Type", "application/json");
             xhttp.send();
         }
@@ -51,6 +64,10 @@
         <source src="http://localhost:8080/video" type="video/ogg">
         Your browser does not support the video tag.
     </video>
+    <div>
+        <span>My Videos:</span>
+        <div id="videoContainer"></div>
+    </div>
     <div style="position: absolute; right: 30px; top: 5px;">
         <a href="javascript:void(0)" onclick="logout()">Logout</a>
     </div>

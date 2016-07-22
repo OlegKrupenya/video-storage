@@ -1,6 +1,7 @@
 package com.testdev.videostorage.main;
 
 import com.testdev.videostorage.web.UserController;
+import com.testdev.videostorage.web.VideoController;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -17,6 +18,7 @@ public class BaseApplication extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> s = new HashSet<Class<?>>();
         s.add(UserController.class);
+        s.add(VideoController.class);
         return s;
     }
 }
