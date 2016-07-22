@@ -46,8 +46,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     private User populateUserFromResultSet(ResultSet rs) throws SQLException {
-        User user = new User();
+        User user = null;
         while (rs.next()) {
+            user = new User();
             user.setUserId(rs.getLong("user_id"));
             user.setFirstName(rs.getString("first_name"));
             user.setLastName(rs.getString("last_name"));
