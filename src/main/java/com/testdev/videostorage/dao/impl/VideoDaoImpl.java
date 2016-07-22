@@ -21,9 +21,11 @@ public class VideoDaoImpl implements VideoDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
-            Video video = populateVideoFromResultSet(rs);
-            if (video != null) {
-                videos.add(video);
+            while (rs.next()) {
+                Video video = populateVideoFromResultSet(rs);
+                if (video != null) {
+                    videos.add(video);
+                }
             }
             rs.close();
         } catch (SQLException e) {
@@ -34,13 +36,11 @@ public class VideoDaoImpl implements VideoDao {
 
     private Video populateVideoFromResultSet(ResultSet rs) throws SQLException {
         Video video = null;
-        while (rs.next()) {
-            video = new Video();
-            video.setVideoId(rs.getLong("video_id"));
-            video.setUserId(rs.getLong("user_id"));
+        video = new Video();
+        video.setVideoId(rs.getLong("video_id"));
+        video.setUserId(rs.getLong("user_id"));
 //            video.setContent(rs.getBytes("content"));
-            video.setTitle(rs.getString("title"));
-        }
+        video.setTitle(rs.getString("title"));
         return video;
     }
 

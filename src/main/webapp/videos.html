@@ -19,8 +19,12 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    var user = JSON.parse(xhttp.responseText);
-                    document.getElementById('videoContainer').innerHTML = 'Video will be here...';
+                    var array = eval(xhttp.responseText);
+                    if (xhttp.responseText) {
+                        makeUL(array);
+                    } else {
+                        document.getElementById('videoContainer').innerHTML = 'Video will be here...';
+                    }
                 }
             };
             xhttp.open("GET", "/resources/video/getVideosForUser", true);
@@ -43,6 +47,18 @@
             var url = window.location.href.substring(0, posLogin);
             window.location.href = url;
         }
+
+        function makeUL(array) {
+            var list = document.createElement('ul');
+            for (var i = 0; i < array.length; i++) {
+                var item = document.createElement('li');
+                item.appendChild(document.createTextNode(array[i].title));
+                list.appendChild(item);
+            }
+            document.getElementById("videoContainer").appendChild(list);
+            return list;
+        }
+
     </script>
 </head>
 <body onload="loadUser()">
