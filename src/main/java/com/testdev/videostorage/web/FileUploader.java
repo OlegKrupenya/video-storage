@@ -1,5 +1,11 @@
 package com.testdev.videostorage.web;
 
+import com.testdev.videostorage.dao.VideoDao;
+import com.testdev.videostorage.dao.impl.VideoDaoImpl;
+import com.testdev.videostorage.domain.User;
+import com.testdev.videostorage.domain.Video;
+import sun.misc.IOUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +21,7 @@ import java.io.*;
 @WebServlet("/upload")
 @MultipartConfig
 public class FileUploader extends HttpServlet {
+    private VideoDao videoDao = new VideoDaoImpl();
     private static final long serialVersionUID = 1L;
     /**
      * Name of the directory where uploaded files will be saved, relative to
@@ -49,12 +56,32 @@ public class FileUploader extends HttpServlet {
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
         }
-
+        User user = (User) request.getSession().getAttribute("user");
         for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
-            part.write(savePath + File.separator + fileName);
+            byte[] bytes = getBytesFromInputStream(part.getInputStream());
+            Video video = new Video();
+            video.setTitle(fileName);
+            video.setContent(bytes);
+            video.setUserId(user.getUserId());
+            this.videoDao.insertVideo(video);
+//            part.write(savePath + File.separator + fileName);
         }
         response.sendRedirect("videos.html");
+    }
+
+    private byte[] getBytesFromInputStream(InputStream is) throws IOException {
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream();)
+        {
+            byte[] buffer = new byte[0xFFFF];
+
+            for (int len; (len = is.read(buffer)) != -1;)
+                os.write(buffer, 0, len);
+
+            os.flush();
+
+            return os.toByteArray();
+        }
     }
 
     /**

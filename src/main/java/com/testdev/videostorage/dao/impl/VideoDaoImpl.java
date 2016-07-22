@@ -51,7 +51,7 @@ public class VideoDaoImpl implements VideoDao {
 
     @Override
     public boolean insertVideo(Video video) {
-        String insertTableSQL = "INSERT INTO video"
+        String insertTableSQL = "INSERT INTO videos"
                 + "(title, content, user_id) VALUES"
                 + "(?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertTableSQL, Statement.RETURN_GENERATED_KEYS)) {
