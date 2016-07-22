@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>File Uploading Form</title>
+    <script type="application/javascript">
+        function loadUser() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var user = JSON.parse(xhttp.responseText);
+                    document.getElementById('username').innerHTML = user.firstName + ' ' + user.lastName;
+                    loadVideoForUser();
+                }
+            };
+            xhttp.open("GET", "/resources/hello/getUser", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
+        }
+        function loadVideoForUser() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var user = JSON.parse(xhttp.responseText);
+                    document.getElementById('videoContainer').innerHTML = 'Video will be here...';
+                }
+            };
+            xhttp.open("GET", "/resources/video/getVideosForUser", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
+        }
+        function logout() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    window.location.href = window.location.href + '/login.html';
+                }
+            };
+            xhttp.open("POST", "/resources/hello/logout", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
+        }
+        function redirectToUploadPage() {
+            var posLogin = window.location.href.indexOf('videos');
+            var url = window.location.href.substring(0, posLogin);
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body onload="loadUser()">
+<span>Welcome,
+        <span id="username"></span>
+    </span>
+<div id="container">
+    <a href="javascript:void(0)" onclick="redirectToUploadPage()">Upload a video</a>
+    <h3>My Videos:</h3>
+    <div id="videoContainer"></div>
+</div>
+<div style="position: absolute; right: 30px; top: 5px;">
+    <a href="javascript:void(0)" onclick="logout()">Logout</a>
+</div>
+</body>
+</html>

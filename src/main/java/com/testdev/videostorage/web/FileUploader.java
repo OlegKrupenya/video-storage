@@ -54,11 +54,7 @@ public class FileUploader extends HttpServlet {
             String fileName = extractFileName(part);
             part.write(savePath + File.separator + fileName);
         }
-
-        request.setAttribute("message", "Upload has been done successfully!");
-        response.getWriter().print("<h3>Upload has been done successfully!</h3>");
-//        getServletContext().getRequestDispatcher("/message.jsp").forward(
-//                request, response);
+        response.sendRedirect("videos.html");
     }
 
     /**
