@@ -10,6 +10,8 @@
             window.location.href = url;
         }
         function signIn() {
+            document.getElementById('btnSignIp').disabled = "disabled";
+            document.getElementById('btnSignUp').disabled = "disabled";
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -39,6 +41,11 @@
                 password: document.getElementById('passwordSignUp').value
             }));
         }
+        function onKeyDownHandler(event) {
+            if (event.keyCode == 13) {
+                signIn();
+            }
+        }
     </script>
 </head>
 <body>
@@ -46,14 +53,14 @@
     <div class="login">
         <div class="row">
             <span>Username or email</span>
-            <input id="emailSignIn" type="text" placeholder="Username or email"/>
+            <input id="emailSignIn" type="text" onkeydown="onKeyDownHandler(event)" placeholder="Username or email"/>
         </div>
         <div class="row">
             <span>Password</span>
-            <input id="passwordSignIn" type="password" placeholder="Password"/>
+            <input id="passwordSignIn" type="password" onkeydown="onKeyDownHandler(event)" placeholder="Password"/>
         </div>
         <div class="row">
-            <button onclick="signIn()">Log In</button>
+            <button id="btnSignIp" onclick="signIn()">Log In</button>
         </div>
     </div>
     <div class="register">
@@ -91,7 +98,7 @@
             </select>
         </div>
         <div class="row">
-            <button onclick="signUp()">Sign Up</button>
+            <button id="btnSignUp" onclick="signUp()">Sign Up</button>
         </div>
     </div>
 </div>
