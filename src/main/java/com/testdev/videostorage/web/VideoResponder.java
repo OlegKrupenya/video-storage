@@ -16,17 +16,13 @@ public class VideoResponder extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         response.setContentType("video/mp4");
-        ServletOutputStream out = response.getOutputStream();
-        FileInputStream fin = new FileInputStream("C:\\Users\\Public\\Videos\\Sample Videos\\small.ogg");
-
-        byte[] buf = new byte[4096];
-        int read;
-        while ((read = fin.read(buf)) != -1) {
-            out.write(buf, 0, read);
+        try (ServletOutputStream out = response.getOutputStream();
+                    FileInputStream fin = new FileInputStream("C:\\Users\\Public\\Videos\\Sample Videos\\small.ogg")) {
+            byte[] buf = new byte[4096];
+            int read;
+            while ((read = fin.read(buf)) != -1) {
+                out.write(buf, 0, read);
+            }
         }
-
-        fin.close();
-        out.flush();
-        out.close();
     }
 }

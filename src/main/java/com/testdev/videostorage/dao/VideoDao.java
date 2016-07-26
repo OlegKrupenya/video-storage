@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface VideoDao {
     List<Video> getVideosForUser(Long userId);
+    Video getVideoById(Long videoId);
     List<Video> searchVideosByTitle(String title);
     boolean insertVideo(Video video);
     boolean deleteVideo(Video video);

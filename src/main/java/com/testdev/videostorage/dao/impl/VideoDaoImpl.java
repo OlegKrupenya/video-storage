@@ -34,12 +34,28 @@ public class VideoDaoImpl implements VideoDao {
         return videos;
     }
 
-    private Video populateVideoFromResultSet(ResultSet rs) throws SQLException {
+    @Override
+    public Video getVideoById(Long videoId) {
         Video video = null;
-        video = new Video();
+        String sql = "SELECT * FROM videos where video_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, videoId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                video = populateVideoFromResultSet(rs);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return video;
+    }
+
+    private Video populateVideoFromResultSet(ResultSet rs) throws SQLException {
+        Video video = new Video();
         video.setVideoId(rs.getLong("video_id"));
         video.setUserId(rs.getLong("user_id"));
-//            video.setContent(rs.getBytes("content"));
+        video.setContent(rs.getBytes("content"));
         video.setTitle(rs.getString("title"));
         return video;
     }
