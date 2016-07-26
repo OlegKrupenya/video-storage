@@ -17,6 +17,14 @@
                     var user = JSON.parse(xhttp.responseText);
                     document.getElementById('username').innerHTML = user.firstName + ' ' + user.lastName;
                     loadVideoForUser();
+                    var player = document.getElementById('videoPlayer');
+                    var mp4Vid = document.getElementById('videoSrc');
+                    player.pause();
+                    var posVideo = window.location.href.indexOf('=');
+                    var videoId = window.location.href.substring(posVideo + 1);
+                    mp4Vid.src = window.location.href.split('?')[0] + "/video?videoId=" + videoId;
+                    player.load();
+                    player.play();
                 }
             };
             xhttp.open("GET", "/resources/hello/getUser", true);
@@ -60,8 +68,8 @@
         <br/>
         <input type="submit" value="Upload File"/>
     </form>
-    <video width="800" height="600" controls>
-        <source src="http://localhost:8080/video" type="video/ogg">
+    <video id="videoPlayer" width="800" height="600" controls>
+        <source id="videoSrc" type="video/ogg">
         Your browser does not support the video tag.
     </video>
     <div>

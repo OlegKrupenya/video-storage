@@ -53,7 +53,13 @@
             var list = document.createElement('ul');
             for (var i = 0; i < array.length; i++) {
                 var item = document.createElement('li');
-                item.appendChild(document.createTextNode(array[i].title));
+                var aTag = document.createElement('a');
+                var posLogin = window.location.href.indexOf('videos');
+                var url = window.location.href.substring(0, posLogin);
+                url = url + '?videoId=' + array[i].videoId;
+                aTag.setAttribute("href", url);
+                aTag.innerHTML = array[i].title;
+                item.appendChild(aTag);
                 var checkbox = document.createElement('input');
                 checkbox.type = "checkbox";
                 checkbox.name = "videoRecord" + array[i].videoId;
@@ -66,9 +72,9 @@
         function removeVideos() {
             var inputs = document.getElementsByTagName("input");
             var idsToRemove = [];
-            for(var i = 0; i < inputs.length; i++) {
-                if(inputs[i].name.indexOf('videoRecord') == 0 && inputs[i].checked) {
-                    idsToRemove.push({videoId : inputs[i].name.substring(11)});
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].name.indexOf('videoRecord') == 0 && inputs[i].checked) {
+                    idsToRemove.push({videoId: inputs[i].name.substring(11)});
                 }
             }
             var xhttp = new XMLHttpRequest();
