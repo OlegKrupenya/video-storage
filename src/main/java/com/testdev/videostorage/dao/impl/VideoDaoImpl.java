@@ -72,6 +72,14 @@ public class VideoDaoImpl implements VideoDao {
 
     @Override
     public boolean deleteVideo(Video video) {
-        return false;
+        String deleteTableSQL = "DELETE FROM videos WHERE video_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(deleteTableSQL)) {
+            preparedStatement.setLong(1, video.getVideoId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

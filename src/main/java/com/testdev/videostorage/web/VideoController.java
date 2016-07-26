@@ -6,10 +6,7 @@ import com.testdev.videostorage.domain.User;
 import com.testdev.videostorage.domain.Video;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -28,5 +25,19 @@ public class VideoController {
     public List<Video> getVideosForUser(@Context HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         return this.videoDao.getVideosForUser(user.getUserId());
+    }
+
+    @DELETE
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/removeVideos")
+    public boolean removeVideos(Video[] videos, @Context HttpServletRequest request) {
+        boolean result = true;
+        for (Video video : videos) {
+            if (!this.videoDao.deleteVideo(video)) {
+                result = false;
+            }
+        }
+        return result;
     }
 }
