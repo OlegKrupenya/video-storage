@@ -18,7 +18,7 @@
                     redirectToMainPage();
                 }
             };
-            xhttp.open("POST", "/resources/hello/signin", true);
+            xhttp.open("POST", "/resources/user/signin", true);
             xhttp.setRequestHeader("Content-Type", "application/json");
             xhttp.send(JSON.stringify({
                 email: document.getElementById('emailSignIn').value,
@@ -32,7 +32,7 @@
                     redirectToMainPage();
                 }
             };
-            xhttp.open("POST", "/resources/hello/signup", true);
+            xhttp.open("POST", "/resources/user/signup", true);
             xhttp.setRequestHeader("Content-Type", "application/json");
             xhttp.send(JSON.stringify({
                 firstName: document.getElementById('firstNameSignUp').value,

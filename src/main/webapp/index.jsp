@@ -32,7 +32,7 @@
             }
         }
         ;
-        xhttp.open("GET", "/resources/hello/getUser", true);
+        xhttp.open("GET", "/resources/user/getUser", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send();
         }
@@ -43,7 +43,7 @@
                     window.location.href = window.location.href + '/login.html';
                 }
             };
-            xhttp.open("POST", "/resources/hello/logout", true);
+            xhttp.open("POST", "/resources/user/logout", true);
             xhttp.setRequestHeader("Content-Type", "application/json");
             xhttp.send();
         }

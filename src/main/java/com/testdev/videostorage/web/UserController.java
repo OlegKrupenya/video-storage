@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 /**
  * @author oleh.krupenia.
  */
-@Path("hello")
+@Path("user")
 public class UserController {
     private UserDao userDao = new UserDaoImpl();
 
