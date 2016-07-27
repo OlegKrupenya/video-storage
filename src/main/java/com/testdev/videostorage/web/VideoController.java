@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,12 +33,8 @@ public class VideoController {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/removeVideos")
     public boolean removeVideos(Video[] videos, @Context HttpServletRequest request) {
-        boolean result = true;
-        for (Video video : videos) {
-            if (!this.videoDao.deleteVideo(video)) {
-                result = false;
-            }
-        }
-        return result;
+        return Arrays.stream(videos)
+                .map(video1 -> this.videoDao.deleteVideo(video1))
+                .filter(b -> false).findAny().orElse(true);
     }
 }
