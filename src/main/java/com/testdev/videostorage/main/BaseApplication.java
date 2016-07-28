@@ -1,6 +1,6 @@
 package com.testdev.videostorage.main;
 
-import com.testdev.videostorage.web.SecurityFilter;
+//import com.testdev.videostorage.web.SecurityFilter;
 import com.testdev.videostorage.web.UserController;
 import com.testdev.videostorage.web.VideoController;
 
@@ -20,7 +20,7 @@ public class BaseApplication extends Application {
         Set<Class<?>> s = new HashSet<Class<?>>();
         s.add(UserController.class);
         s.add(VideoController.class);
-        s.add(SecurityFilter.class);
+//        s.add(SecurityFilter.class);
         return s;
     }
 }
