@@ -1,6 +1,5 @@
 package com.testdev.videostorage.main;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +10,7 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.testdev.videostorage.domain.User;
+import com.testdev.videostorage.domain.FBUser;
 
 import java.io.IOException;
 
@@ -74,25 +73,5 @@ public class FacebookExample {
         System.out.println(user.getName());
         System.out.println("Thats it man! Go and build something awesome with ScribeJava! :)");
 
-    }
-}
-class FBUser {
-    private String name;
-    private Long id;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
