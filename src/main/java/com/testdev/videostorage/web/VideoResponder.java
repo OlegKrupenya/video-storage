@@ -3,6 +3,7 @@ package com.testdev.videostorage.web;
 import com.testdev.videostorage.dao.VideoDao;
 import com.testdev.videostorage.dao.impl.VideoDaoImpl;
 import com.testdev.videostorage.domain.Video;
+import com.testdev.videostorage.utils.ConnectionManager;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ import java.io.IOException;
  */
 @WebServlet("/video")
 public class VideoResponder extends HttpServlet {
-    private VideoDao videoDao = new VideoDaoImpl();
+    private VideoDao videoDao = new VideoDaoImpl(ConnectionManager.getConnection());
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {

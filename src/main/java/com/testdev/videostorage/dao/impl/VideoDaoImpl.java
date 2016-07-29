@@ -12,7 +12,11 @@ import java.util.List;
  * @author oleh.krupenia.
  */
 public class VideoDaoImpl implements VideoDao {
-    private Connection connection = ConnectionManager.getConnection();
+    private final Connection connection;
+
+    public VideoDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public List<Video> getVideosForUser(Long userId) {

@@ -3,6 +3,7 @@ package com.testdev.videostorage.web;
 import com.testdev.videostorage.dao.UserDao;
 import com.testdev.videostorage.dao.impl.UserDaoImpl;
 import com.testdev.videostorage.domain.User;
+import com.testdev.videostorage.utils.ConnectionManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +17,7 @@ import javax.ws.rs.core.Response;
  */
 @Path("user")
 public class UserController {
-    private UserDao userDao = new UserDaoImpl();
+    private UserDao userDao = new UserDaoImpl(ConnectionManager.getConnection());
 
     @GET
     @Consumes({MediaType.APPLICATION_JSON})

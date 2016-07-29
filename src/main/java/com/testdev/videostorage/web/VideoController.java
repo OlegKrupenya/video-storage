@@ -4,6 +4,7 @@ import com.testdev.videostorage.dao.VideoDao;
 import com.testdev.videostorage.dao.impl.VideoDaoImpl;
 import com.testdev.videostorage.domain.User;
 import com.testdev.videostorage.domain.Video;
+import com.testdev.videostorage.utils.ConnectionManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @Path("video")
 public class VideoController {
-    private VideoDao videoDao = new VideoDaoImpl();
+    private VideoDao videoDao = new VideoDaoImpl(ConnectionManager.getConnection());
 
     @GET
     @Consumes({MediaType.APPLICATION_JSON})

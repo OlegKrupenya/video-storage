@@ -3,7 +3,6 @@ package com.testdev.videostorage.dao.impl;
 import com.testdev.videostorage.dao.UserDao;
 import com.testdev.videostorage.domain.Gender;
 import com.testdev.videostorage.domain.User;
-import com.testdev.videostorage.utils.ConnectionManager;
 
 import java.sql.*;
 import java.util.List;
@@ -12,7 +11,11 @@ import java.util.List;
  * @author oleh.krupenia.
  */
 public class UserDaoImpl implements UserDao {
-    private Connection connection = ConnectionManager.getConnection();
+    private final Connection connection;
+
+    public UserDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public User getUserById(Long id) {

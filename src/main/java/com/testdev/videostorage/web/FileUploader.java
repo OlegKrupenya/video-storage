@@ -4,6 +4,7 @@ import com.testdev.videostorage.dao.VideoDao;
 import com.testdev.videostorage.dao.impl.VideoDaoImpl;
 import com.testdev.videostorage.domain.User;
 import com.testdev.videostorage.domain.Video;
+import com.testdev.videostorage.utils.ConnectionManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -23,7 +24,7 @@ import java.io.InputStream;
 @MultipartConfig
 public class FileUploader extends HttpServlet {
 
-    private VideoDao videoDao = new VideoDaoImpl();
+    private VideoDao videoDao = new VideoDaoImpl(ConnectionManager.getConnection());
 
     /**
      * handles file upload
