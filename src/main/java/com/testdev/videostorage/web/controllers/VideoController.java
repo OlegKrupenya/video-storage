@@ -1,4 +1,4 @@
-package com.testdev.videostorage.web;
+package com.testdev.videostorage.web.controllers;
 
 import com.testdev.videostorage.dao.VideoDao;
 import com.testdev.videostorage.dao.impl.VideoDaoImpl;

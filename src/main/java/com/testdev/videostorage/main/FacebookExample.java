@@ -28,7 +28,7 @@ public class FacebookExample {
         final OAuth20Service service = new ServiceBuilder()
                 .apiKey(clientId)
                 .apiSecret(clientSecret)
-                .callback("http://localhost:8080/login.html")
+                .callback("http://localhost:8080/facebook")
 //                .responseType("token")
                 .build(FacebookApi.instance());
 

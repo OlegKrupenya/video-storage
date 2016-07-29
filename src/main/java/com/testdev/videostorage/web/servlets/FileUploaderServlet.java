@@ -1,4 +1,4 @@
-package com.testdev.videostorage.web;
+package com.testdev.videostorage.web.servlets;
 
 import com.testdev.videostorage.dao.VideoDao;
 import com.testdev.videostorage.dao.impl.VideoDaoImpl;
@@ -22,7 +22,7 @@ import java.io.InputStream;
  */
 @WebServlet("/upload")
 @MultipartConfig
-public class FileUploader extends HttpServlet {
+public class FileUploaderServlet extends HttpServlet {
 
     private VideoDao videoDao = new VideoDaoImpl(ConnectionManager.getConnection());
 

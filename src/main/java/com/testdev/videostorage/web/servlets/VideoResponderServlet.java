@@ -1,4 +1,4 @@
-package com.testdev.videostorage.web;
+package com.testdev.videostorage.web.servlets;
 
 import com.testdev.videostorage.dao.VideoDao;
 import com.testdev.videostorage.dao.impl.VideoDaoImpl;
@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author oleh.krupenia.
  */
 @WebServlet("/video")
-public class VideoResponder extends HttpServlet {
+public class VideoResponderServlet extends HttpServlet {
     private VideoDao videoDao = new VideoDaoImpl(ConnectionManager.getConnection());
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)

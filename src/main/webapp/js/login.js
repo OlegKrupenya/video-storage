@@ -38,6 +38,9 @@ function signUp() {
         password: document.getElementById('passwordSignUp').value
     }));
 }
+function signInFacebook() {
+    window.location.href = "https://www.facebook.com/v2.6/dialog/oauth?response_type=code&client_id=1212991205417742&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Ffacebook";
+}
 function onKeyDownHandler(event) {
     if (event.keyCode == 13) {
         signIn();

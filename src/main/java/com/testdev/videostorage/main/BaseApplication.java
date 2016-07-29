@@ -1,8 +1,8 @@
 package com.testdev.videostorage.main;
 
 //import com.testdev.videostorage.web.SecurityFilter;
-import com.testdev.videostorage.web.UserController;
-import com.testdev.videostorage.web.VideoController;
+import com.testdev.videostorage.web.controllers.UserController;
+import com.testdev.videostorage.web.controllers.VideoController;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
